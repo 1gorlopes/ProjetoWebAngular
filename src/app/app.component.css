@@ -1,0 +1,60 @@
+/* Layout com barra lateral e conteúdo centralizado */
+.layout {
+    display: flex;
+    margin-top: 0;  /* Removido o espaço da barra superior */
+  }
+  
+  .sidebar {
+    width: 200px;  /* Espaço reservado para o menu lateral */
+    background-color: #333;
+    height: 100vh;  /* Ocupa toda a altura da janela */
+    position: fixed;
+    top: 0;  /* Barra lateral agora começa no topo */
+    left: 0;
+    padding-top: 20px;
+    z-index: 999;
+  }
+  
+  .sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar nav ul li {
+    margin: 10px 0;
+  }
+  
+  .sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    font-size: 16px;
+  }
+  
+  .sidebar nav ul li a:hover {
+    background-color: #4CAF50;
+  }
+  
+  /* Conteúdo centralizado */
+  .content {
+    flex-grow: 1;
+    margin-left: 220px;  /* Espaço para a sidebar */
+    padding: 20px;
+    max-width: 800px;  /* Limita a largura do conteúdo para centralizar */
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+  }
+  
+  /* Responsividade para telas menores */
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      width: 100px;  /* Encolhe o menu em telas menores */
+    }
+  
+    .content {
+      margin-left: 120px;  /* Ajusta o espaço para o conteúdo em telas menores */
+    }
+  }
+  

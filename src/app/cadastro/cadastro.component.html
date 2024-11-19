@@ -1,0 +1,78 @@
+<form (ngSubmit)="onSubmit()" #cadastroForm="ngForm">
+  <!-- Informações Básicas -->
+  <div>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" required [(ngModel)]="usuario.nome" name="nome" #nome="ngModel">
+    <div *ngIf="nome.invalid && nome.touched" class="error">Nome é obrigatório.</div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" required [(ngModel)]="usuario.email" name="email" #email="ngModel">
+    <div *ngIf="email.invalid && email.touched" class="error">Email é obrigatório.</div>
+  </div>
+
+  <div>
+    <label for="profissao">Profissão:</label>
+    <input type="text" id="profissao" required [(ngModel)]="usuario.profissao" name="profissao" #profissao="ngModel">
+    <div *ngIf="profissao.invalid && profissao.touched" class="error">Profissão é obrigatória.</div>
+  </div>
+
+  <div>
+    <label for="resumo">Resumo:</label>
+    <textarea id="resumo" [(ngModel)]="usuario.resumo" name="resumo"></textarea>
+  </div>
+
+  <!-- Experiência Profissional -->
+  <div>
+    <h4>Experiência Profissional</h4>
+    <div *ngFor="let exp of usuario.experiencia; let i = index">
+      <label for="cargo">Cargo:</label>
+      <input type="text" [(ngModel)]="exp.cargo" name="cargo-{{i}}">
+
+      <label for="empresa">Empresa:</label>
+      <input type="text" [(ngModel)]="exp.empresa" name="empresa-{{i}}">
+
+      <label for="duracao">Duração:</label>
+      <input type="text" [(ngModel)]="exp.duracao" name="duracao-{{i}}">
+
+      <label for="descricao">Descrição:</label>
+      <textarea [(ngModel)]="exp.descricao" name="descricao-{{i}}"></textarea>
+
+      <button type="button" (click)="removerExperiencia(i)">Remover Experiência</button>
+    </div>
+    <button type="button" (click)="adicionarExperiencia()">Adicionar Experiência</button>
+  </div>
+
+  <!-- Educação -->
+  <div>
+    <h4>Educação</h4>
+    <div *ngFor="let edu of usuario.educacao; let i = index">
+      <label for="curso">Curso:</label>
+      <input type="text" [(ngModel)]="edu.curso" name="curso-{{i}}">
+
+      <label for="instituicao">Instituição:</label>
+      <input type="text" [(ngModel)]="edu.instituicao" name="instituicao-{{i}}">
+
+      <label for="anoConclusao">Ano de Conclusão:</label>
+      <input type="text" [(ngModel)]="edu.anoConclusao" name="anoConclusao-{{i}}">
+
+      <button type="button" (click)="removerEducacao(i)">Remover Educação</button>
+    </div>
+    <button type="button" (click)="adicionarEducacao()">Adicionar Educação</button>
+  </div>
+
+  <!-- Habilidades -->
+  <div>
+    <label for="habilidades">Habilidades (separadas por vírgula):</label>
+    <input type="text" id="habilidades" [(ngModel)]="usuario.habilidadesString" name="habilidades">
+  </div>
+
+  <!-- Upload de Imagem -->
+  <div>
+    <label for="imagem">Upload de Foto:</label>
+    <input type="file" id="imagem" (change)="onFileSelected($event)">
+  </div>
+
+  <button type="submit" [disabled]="cadastroForm.invalid">Cadastrar</button>
+</form>

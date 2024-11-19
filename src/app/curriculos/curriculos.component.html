@@ -1,0 +1,60 @@
+<h2>Lista de Currículos</h2>
+<div *ngFor="let usuario of usuarios" class="card">
+  <h3>{{ usuario.nome }}</h3>
+  <p><strong>Email:</strong> {{ usuario.email }}</p>
+  <p><strong>Profissão:</strong> {{ usuario.profissao }}</p>
+  <p><strong>Resumo:</strong> {{ usuario.resumo }}</p>
+
+  <h4>Experiência Profissional</h4>
+  <ul>
+    <li *ngFor="let exp of usuario.experiencia">
+      <strong>{{ exp.cargo }}</strong> - {{ exp.empresa }} ({{ exp.duracao }})
+      <p>{{ exp.descricao }}</p>
+    </li>
+  </ul>
+
+  <h4>Educação</h4>
+  <ul>
+    <li *ngFor="let edu of usuario.educacao">
+      <strong>{{ edu.curso }}</strong> - {{ edu.instituicao }} (Concluído em {{ edu.anoConclusao }})
+    </li>
+  </ul>
+
+  <h4>Habilidades</h4>
+  <ul class="habilidades">
+    <li *ngFor="let habilidade of usuario.habilidades">{{ habilidade }}</li>
+  </ul>
+
+  <button (click)="editarUsuario(usuario)">Editar</button>
+  <button (click)="deletarUsuario(usuario)">Deletar</button>
+</div>
+
+<!-- Formulário para editar o usuário -->
+<div *ngIf="usuarioEditando" class="edit-form">
+  <h3>Editando Usuário</h3>
+  <form (ngSubmit)="salvarEdicao()">
+    <!-- Atualizar os campos do formulário com os novos dados, como resumo e habilidades -->
+    <div>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" [(ngModel)]="usuarioEditando.nome" name="nome">
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="usuarioEditando.email" name="email">
+    </div>
+    <div>
+      <label for="profissao">Profissão:</label>
+      <input type="text" id="profissao" [(ngModel)]="usuarioEditando.profissao" name="profissao">
+    </div>
+    <div>
+      <label for="resumo">Resumo:</label>
+      <textarea id="resumo" [(ngModel)]="usuarioEditando.resumo" name="resumo"></textarea>
+    </div>
+    <div>
+      <label for="habilidades">Habilidades (separadas por vírgula):</label>
+      <input type="text" id="habilidades" [(ngModel)]="usuarioEditando.habilidades" name="habilidades">
+    </div>
+    <button type="submit">Salvar</button>
+    <button type="button" (click)="cancelarEdicao()">Cancelar</button>
+  </form>
+</div>

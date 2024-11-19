@@ -1,0 +1,29 @@
+<h2>Postagens</h2>
+
+<!-- Formulário para adicionar nova postagem -->
+<form (ngSubmit)="adicionarPostagem()" class="postagem-form" #postagemForm="ngForm">
+  <div class="form-group">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" required [(ngModel)]="novaPostagem.titulo" name="titulo" #titulo="ngModel">
+  </div>
+
+  <div class="form-group">
+    <label for="conteudo">Conteúdo:</label>
+    <textarea id="conteudo" required [(ngModel)]="novaPostagem.conteudo" name="conteudo" #conteudo="ngModel"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="postagemForm.invalid">Publicar</button>
+</form>
+
+<!-- Lista de postagens -->
+<div class="feed">
+  <div *ngFor="let postagem of postagens" class="postagem-card">
+    <h3 class="postagem-titulo">{{ postagem.titulo }}</h3>
+    <p class="postagem-conteudo">{{ postagem.conteudo }}</p>
+
+    <div class="postagem-actions">
+      <button (click)="editarPostagem(postagem)">Editar</button>
+      <button (click)="deletarPostagem(postagem)">Deletar</button>
+    </div>
+  </div>
+</div>
