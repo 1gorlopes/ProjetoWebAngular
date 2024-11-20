@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
+import { HttpClientModule } from '@angular/common/http'; // Importação adicionada
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { EstatisticasComponent } from './estatisticas/estatisticas.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule, // Módulo adicionado
     FormsModule
   ],
   providers: [

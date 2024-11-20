@@ -2,6 +2,8 @@
 
 import { Component } from '@angular/core';
 
+import { CurriculoService } from '../curriculo.service';
+
 @Component({
   selector: 'app-curriculos',
   templateUrl: './curriculos.component.html',
